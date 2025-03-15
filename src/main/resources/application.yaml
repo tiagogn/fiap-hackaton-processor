@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: ${springProfile:local}
+  application:
+    name: processor
+  datasource:
+    driver-class-name: org.postgresql.Driver
+
+server:
+  servlet:
+    context-path: /processor
+
+management:
+    endpoints:
+        web:
+        exposure:
+            include: "*"
+    endpoint:
+      health:
+        show-details: always
