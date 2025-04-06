@@ -9,10 +9,11 @@ spring:
 server:
   servlet:
     context-path: /processor
+  port: 8081
 
 management:
     endpoints:
-        web:
+      web:
         exposure:
             include: "*"
     endpoint:

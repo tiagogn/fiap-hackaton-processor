@@ -3,3 +3,22 @@ spring:
     url: jdbc:postgresql://localhost:5432/videos
     username: admin
     password: password
+  cloud:
+    aws:
+      region:
+        static: us-east-1
+      credentials:
+        access-key: test
+        secret-key: test
+      sqs:
+        endpoint: http://localhost:4566
+      s3:
+        endpoint: http://localhost:4566
+        path-style-access-enabled: true
+
+aws:
+  queue:
+    video-queue: video-queue
+  s3:
+    video-bucket: videos
+
