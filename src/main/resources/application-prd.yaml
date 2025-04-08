@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+
+  cloud:
+    aws:
+      region:
+        static: ${AWS_REGION:us-east-1}
+      credentials:
+        access-key: ${AWS_ACCESS_KEY_ID}
+        secret-key: ${AWS_SECRET_ACCESS_KEY}
+      sqs:
+        endpoint: https://sqs.${AWS_REGION:us-east-1}.amazonaws.com
+      s3:
+        endpoint: https://s3.${AWS_REGION:us-east-1}.amazonaws.com
+        path-style-access-enabled: false
+
+aws:
+  queue:
+    video-queue: ${AWS_SQS_QUEUE_NAME}
+  s3:
+    video-bucket: ${AWS_S3_BUCKET}
+  sns:
+    topic-arn: ${AWS_SNS_TOPIC_ARN}
