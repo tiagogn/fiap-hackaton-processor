@@ -2,6 +2,7 @@ package br.com.fiap.hackaton.processor.infrastructure.config;
 
 import br.com.fiap.hackaton.processor.core.application.GeneratedPhotosByVideoUpload;
 import br.com.fiap.hackaton.processor.core.gateway.VideoStorageGateway;
+import br.com.fiap.hackaton.processor.core.notifier.SendNotificationError;
 import br.com.fiap.hackaton.processor.core.processor.video.SliceVideo;
 import br.com.fiap.hackaton.processor.core.repository.UploadRepository;
 import org.springframework.context.annotation.Bean;
@@ -16,10 +17,14 @@ public class ConfigBeans {
 
     private final SliceVideo sliceVideo;
 
-    public ConfigBeans(UploadRepository uploadRepository, VideoStorageGateway videoStorageGateway, SliceVideo sliceVideo) {
+    private final SendNotificationError sendNotificationError;
+
+    public ConfigBeans(UploadRepository uploadRepository, VideoStorageGateway videoStorageGateway, SliceVideo sliceVideo,
+                       SendNotificationError sendNotificationError) {
         this.uploadRepository = uploadRepository;
         this.videoStorageGateway = videoStorageGateway;
         this.sliceVideo = sliceVideo;
+        this.sendNotificationError = sendNotificationError;
     }
 
     @Bean
@@ -27,7 +32,8 @@ public class ConfigBeans {
         return new GeneratedPhotosByVideoUpload(
                 sliceVideo,
                 uploadRepository,
-                videoStorageGateway
+                videoStorageGateway,
+                sendNotificationError
         );
     }
 }
