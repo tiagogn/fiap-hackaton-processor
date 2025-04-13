@@ -1,5 +1,6 @@
 package br.com.fiap.hackaton.processor.infrastructure.processor.video;
 
+import br.com.fiap.hackaton.processor.core.domain.StatusVideo;
 import br.com.fiap.hackaton.processor.core.domain.Video;
 import br.com.fiap.hackaton.processor.core.processor.video.SliceVideo;
 import lombok.SneakyThrows;
@@ -28,7 +29,7 @@ public class SliceVideoImpl implements SliceVideo {
         // Configurar callback de log do FFmpeg para exibir mensagens detalhadas
         FFmpegLogCallback.set();
 
-        String outputFolder = Files.createTempDirectory(key).toString() + File.separator;
+        String outputFolder = Files.createTempDirectory(video.getId().toString()) + File.separator;
         log.info("Pasta de saída: {}", outputFolder);
 
         log.info("Tamanho do arquivo: {} MB", video.getInputStream().available() / 1024 / 1024);
@@ -88,12 +89,16 @@ public class SliceVideoImpl implements SliceVideo {
 
             if (!hasImages(outputFolder)) {
                 log.warn("Nenhuma imagem foi gerada no diretório {}", outputFolder);
+                video.setStatus(StatusVideo.ERROR);
                 return null;
             }
 
+            video.setStatus(StatusVideo.PROCESSED);
         }
         catch (Exception ex) {
             log.error("Erro durante o processamento: {}", ex.getMessage(), ex);
+            video.setStatus(StatusVideo.ERROR);
+            return null;
         }
 
         return outputFolder;

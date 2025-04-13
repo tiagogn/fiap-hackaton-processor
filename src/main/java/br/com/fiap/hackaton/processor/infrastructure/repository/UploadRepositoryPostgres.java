@@ -13,7 +13,6 @@ import java.util.UUID;
 
 @Repository
 @Qualifier("uploadRepository")
-@Transactional
 @RequiredArgsConstructor
 public class UploadRepositoryPostgres implements UploadRepository{
 
@@ -26,11 +25,15 @@ public class UploadRepositoryPostgres implements UploadRepository{
     }
 
     @Override
+    @Transactional
     public void save(Upload upload) {
         var uploadEntity = UploadEntity.fromDomain(upload);
-        if (upload.getId() != null) {
+        if (uploadEntity.getId() != null) {
             entityManager.merge(uploadEntity);
         }
-        entityManager.persist(uploadEntity);
+        else {
+            entityManager.persist(uploadEntity);
+        }
     }
+
 }

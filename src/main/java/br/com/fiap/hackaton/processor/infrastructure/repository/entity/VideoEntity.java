@@ -27,6 +27,8 @@ public class VideoEntity {
     @Enumerated(EnumType.STRING)
     @JdbcType(PostgreSQLEnumJdbcType.class)
     private StatusVideo status;
+    @Column(name = "zip_filename")
+    private String zipFileName;
 
     public Video toDomain(){
         var video = new Video();
@@ -36,6 +38,7 @@ public class VideoEntity {
         video.setContentType(contentType);
         video.setUri(uri);
         video.setStatus(status);
+        video.setZipFileName(zipFileName);
         return video;
     }
 
@@ -47,6 +50,7 @@ public class VideoEntity {
         videoEntity.setContentType(video.getContentType());
         videoEntity.setUri(video.getUri());
         videoEntity.setStatus(video.getStatus());
+        videoEntity.setZipFileName(video.getZipFileName());
         return videoEntity;
     }
 }

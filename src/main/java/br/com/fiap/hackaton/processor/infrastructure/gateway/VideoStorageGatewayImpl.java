@@ -1,7 +1,6 @@
 package br.com.fiap.hackaton.processor.infrastructure.gateway;
 
 import br.com.fiap.hackaton.processor.core.domain.Upload;
-import br.com.fiap.hackaton.processor.core.domain.Video;
 import br.com.fiap.hackaton.processor.core.gateway.VideoStorageGateway;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

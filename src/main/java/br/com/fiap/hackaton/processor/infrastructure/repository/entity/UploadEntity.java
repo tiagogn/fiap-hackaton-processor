@@ -23,7 +23,6 @@ public class UploadEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private UserEntity userEntity;
     private LocalDateTime creationDate;
-    private String zipFile;
 
     public void addVideoEntity(VideoEntity videoEntity) {
         videosEntity.add(videoEntity);
@@ -34,11 +33,8 @@ public class UploadEntity {
         var upload = new Upload();
         upload.setId(id);
         upload.setCreationDate(creationDate);
-        upload.setZipFile(zipFile);
         upload.setUser(userEntity.toDomain());
-        videosEntity.forEach(videoEntity -> {
-            upload.addVideo(videoEntity.toDomain());
-        });
+        videosEntity.forEach(videoEntity -> upload.addVideo(videoEntity.toDomain()));
         return upload;
     }
 
@@ -46,11 +42,8 @@ public class UploadEntity {
         var uploadEntity = new UploadEntity();
         uploadEntity.setId(upload.getId());
         uploadEntity.setCreationDate(upload.getCreationDate());
-        uploadEntity.setZipFile(upload.getZipFile());
         uploadEntity.setUserEntity(UserEntity.fromDomain(upload.getUser()));
-        upload.getVideos().forEach(video -> {
-            uploadEntity.addVideoEntity(VideoEntity.fromDomain(video));
-        });
+        upload.getVideos().forEach(video -> uploadEntity.addVideoEntity(VideoEntity.fromDomain(video)));
         return uploadEntity;
     }
 }

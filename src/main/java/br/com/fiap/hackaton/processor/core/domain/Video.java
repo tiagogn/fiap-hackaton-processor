@@ -16,4 +16,5 @@ public class Video {
     private String uri;
     private ByteArrayInputStream inputStream;
     private StatusVideo status;
+    private String zipFileName;
 }

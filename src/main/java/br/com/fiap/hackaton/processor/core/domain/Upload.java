@@ -15,7 +15,6 @@ public class Upload {
     private List<Video> videos = new ArrayList<>();
     private User user;
     private LocalDateTime creationDate;
-    private String zipFile;
 
     public void addVideo(Video video) {
         videos.add(video);

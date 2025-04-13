@@ -5,6 +5,11 @@ spring:
     name: processor
   datasource:
     driver-class-name: org.postgresql.Driver
+#  main:
+#    lazy-initialization: true
+#  devtools:
+#    restart:
+#      enabled: false
 
 server:
   servlet:

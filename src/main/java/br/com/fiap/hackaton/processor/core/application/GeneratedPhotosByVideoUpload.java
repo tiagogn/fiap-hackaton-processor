@@ -1,10 +1,12 @@
 package br.com.fiap.hackaton.processor.core.application;
 
 import br.com.fiap.hackaton.processor.core.domain.Upload;
+import br.com.fiap.hackaton.processor.core.domain.Video;
 import br.com.fiap.hackaton.processor.core.gateway.VideoStorageGateway;
 import br.com.fiap.hackaton.processor.core.processor.video.SliceVideo;
 import br.com.fiap.hackaton.processor.core.repository.UploadRepository;
 import br.com.fiap.hackaton.processor.infrastructure.utils.FolderUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.UUID;
 
@@ -37,27 +39,21 @@ public class GeneratedPhotosByVideoUpload {
         if (upload.getVideos().isEmpty())
             return;
 
-        var outputFolder = upload.getVideos()
-                .stream()
-                .map( path -> sliceVideo.execute(upload.getUser().getCpf(), path))
-                .distinct()
-                .findFirst();
+        for (Video video : upload.getVideos()) {
+            var outputFolder = sliceVideo.execute(upload.getUser().getCpf(), video);
 
-        var fileZipName = upload.getUser().getCpf().concat("_")
-                .concat(upload.getId().toString())
-                .concat(".zip");
+            var fileZipName = video.getId().toString()
+                    .concat(".zip");
 
-        //outputFolder.ifPresent(s -> FolderUtils.zip(s, fileZipName));
+            if (StringUtils.isNotBlank(outputFolder)){
+                byte[] bytes = FolderUtils.zip(outputFolder);
+                videoStorageGateway.writeFile(fileZipName, bytes, upload);
 
-        if (outputFolder.isPresent()){
+                video.setZipFileName(fileZipName);
+            }
 
-            byte[] bytes = FolderUtils.zip(outputFolder.get());
-
-            videoStorageGateway.writeFile(fileZipName, bytes, upload);
-
-            upload.setZipFile(fileZipName);
+            uploadRepository.save(upload);
         }
-
     }
 
 }
