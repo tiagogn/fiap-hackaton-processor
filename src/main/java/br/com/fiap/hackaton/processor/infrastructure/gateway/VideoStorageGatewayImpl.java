@@ -30,7 +30,7 @@ public class VideoStorageGatewayImpl implements VideoStorageGateway {
     public void readAllBytesByUpload(Upload upload) {
         log.info("Read all bytes by upload {}", upload);
 
-        Set<String> videos = listVideos(upload.getUser().getCpf());
+        Set<String> videos = listVideos(upload.getId().toString());
 
         if (videos.isEmpty())
             return;
@@ -79,7 +79,7 @@ public class VideoStorageGatewayImpl implements VideoStorageGateway {
     public void writeFile(String fileName, byte[] bytes, Upload upload) {
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucketName)
-                .key(upload.getUser().getCpf()+"/"+fileName)
+                .key(upload.getId().toString()+"/"+fileName)
                 .contentType("application/zip")
                 .contentLength((long)bytes.length)
                 .build();

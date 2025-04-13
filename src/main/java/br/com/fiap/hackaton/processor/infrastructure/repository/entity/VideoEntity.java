@@ -20,7 +20,6 @@ public class VideoEntity {
     private String name;
     private Integer size;
     private String contentType;
-    private String uri;
     @JoinColumn(name = "upload_id")
     @ManyToOne(fetch = FetchType.EAGER)
     private UploadEntity uploadEntity;
@@ -36,7 +35,6 @@ public class VideoEntity {
         video.setName(name);
         video.setSize(size);
         video.setContentType(contentType);
-        video.setUri(uri);
         video.setStatus(status);
         video.setZipFileName(zipFileName);
         return video;
@@ -48,7 +46,6 @@ public class VideoEntity {
         videoEntity.setName(video.getName());
         videoEntity.setSize(video.getSize());
         videoEntity.setContentType(video.getContentType());
-        videoEntity.setUri(video.getUri());
         videoEntity.setStatus(video.getStatus());
         videoEntity.setZipFileName(video.getZipFileName());
         return videoEntity;
