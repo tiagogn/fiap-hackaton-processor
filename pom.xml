@@ -37,6 +37,17 @@
 		<sonar.organization>fiap-lanchonete-soat8</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<springdoc.version>2.8.1</springdoc.version>
+		<sonar.coverage.exclusions>
+			**/src/test/java/**,
+			**/src/main/resources/**,
+			src/main/java/br/com/fiap/hackaton/processor/ProcessorApplication.java,
+			src/main/java/br/com/fiap/hackaton/processor/infrastructure/processor/video/SliceVideoImpl.java,
+			**/src/main/java/br/com/fiap/hackaton/processor/infrastructure/config/**,
+			**/src/main/java/br/com/fiap/hackaton/processor/infrastructure/utils/**
+		</sonar.coverage.exclusions>
+		<sonar.exclusions>
+			${sonar.coverage.exclusions}
+		</sonar.exclusions>
 	</properties>
 
 	<dependencyManagement>
