@@ -51,10 +51,10 @@ public class GeneratedPhotosByVideoUpload {
         for (Video video : upload.getVideos()) {
             var outputFolder = sliceVideo.execute(upload.getUser().getCpf(), video);
 
-            var fileZipName = video.getId().toString()
-                    .concat(".zip");
-
             if (StringUtils.isNotBlank(outputFolder) && video.getStatus() == StatusVideo.PROCESSED ){
+                var fileZipName = video.getId().toString()
+                        .concat(".zip");
+
                 byte[] bytes = FolderUtils.zip(outputFolder);
                 videoStorageGateway.writeFile(fileZipName, bytes, upload);
                 video.setZipFileName(fileZipName);

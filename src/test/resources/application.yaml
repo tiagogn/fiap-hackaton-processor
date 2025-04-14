@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: test
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+  cloud:
+    aws:
+      region:
+        static: us-east-1
+      credentials:
+        access-key: test
+        secret-key: test
+      sqs:
+        endpoint: http://localhost:4566
+      s3:
+        endpoint: http://localhost:4566
+        path-style-access-enabled: true
+      ses:
+        endpoint: http://localhost:4566
+
+aws:
+  queue:
+    video-queue: video-queue
+  s3:
+    video-bucket: videos
+

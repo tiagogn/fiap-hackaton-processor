@@ -13,7 +13,6 @@ public class Video {
     private String name;
     private Integer size;
     private String contentType;
-    private String uri;
     private ByteArrayInputStream inputStream;
     private StatusVideo status;
     private String zipFileName;

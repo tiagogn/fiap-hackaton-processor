@@ -1,9 +1,10 @@
 # Projeto Hackaton - SOAT8 - Grupo 18 Pós-Tech - FIAP
 
-![Kotlin](https://img.shields.io/badge/Kotlin-1.5.31-blue)
+![Java](https://img.shields.io/badge/Java-17-blue)
 ![SpringBoot](https://img.shields.io/badge/SpringBoot-3.4-green)
 ![Docker](https://img.shields.io/badge/Docker-20.10-blue)
 ![Postgres](https://img.shields.io/badge/Postgres-16-blue)
+![Maven](https://img.shields.io/badge/Maven-3-blue)
 
 O objetivo do projeto é o processamento de videos:
 
@@ -41,7 +42,7 @@ docker-compose -f docker-compose.yaml up -d
 ou execute o seguinte comando na pasta do projeto:
 
 ```shell
-./gradlew bootRun
+./mvnw spring-boot:run
 ```
 
 ## Swagger

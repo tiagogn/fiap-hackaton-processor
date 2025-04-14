@@ -28,12 +28,7 @@ public class UploadRepositoryPostgres implements UploadRepository{
     @Transactional
     public void save(Upload upload) {
         var uploadEntity = UploadEntity.fromDomain(upload);
-        if (uploadEntity.getId() != null) {
-            entityManager.merge(uploadEntity);
-        }
-        else {
-            entityManager.persist(uploadEntity);
-        }
+        entityManager.merge(uploadEntity);
     }
 
 }

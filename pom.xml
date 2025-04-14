@@ -81,11 +81,6 @@
 			<version>3.1.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.7.5</version>
@@ -115,6 +110,22 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>1.20.0</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -175,7 +186,11 @@
 						</goals>
 						<configuration>
 							<excludes>
-								<exclude>br/com/fiap/hackaton/procesor/ProcessorApplication.class</exclude>
+								<exclude>br/com/fiap/hackaton/processor/ProcessorApplication.class</exclude>
+								<exclude>br/com/fiap/hackaton/processor/infrastructure/utils/FolderUtils.class</exclude>
+								<exclude>br/com/fiap/hackaton/processor/infrastructure/utils/FormatDateUtils.class</exclude>
+								<exclude>br/com/fiap/hackaton/processor/infrastructure/config/ConfigBeans.class</exclude>
+								<exclude>br/com/fiap/hackaton/processor/infrastructure/processor/video/SliceVideoImpl.class</exclude>
 							</excludes>
 							<rules>
 								<rule>
