@@ -12,7 +12,7 @@
 
 	<groupId>br.com.fiap.hackaton</groupId>
 	<artifactId>processor</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.9.0</version>
 	<name>processor</name>
 	<description>Processador dos videos recebidos</description>
 
