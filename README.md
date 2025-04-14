@@ -5,6 +5,7 @@
 ![Docker](https://img.shields.io/badge/Docker-20.10-blue)
 ![Postgres](https://img.shields.io/badge/Postgres-16-blue)
 ![Maven](https://img.shields.io/badge/Maven-3-blue)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tiagogn_fiap-hackaton-processor&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tiagogn_fiap-hackaton-processor)
 
 O objetivo do projeto é o processamento de videos:
 
@@ -44,26 +45,6 @@ ou execute o seguinte comando na pasta do projeto:
 ```shell
 ./mvnw spring-boot:run
 ```
-
-## Swagger
-
-* API (http://localhost:8080/processor/swagger-ui/index.html)
-
-## Postman
-
-Dentro do projeto, existe uma collection do Postman com os endpoints para teste.
-
-* Collection (hackaton/processor/Tech
-  Challenge.postman_collection.json) [Download](Fiap%20-%20Lanchonete%20-%20Produto.postman_collection.json)
-* Environment (hackaton/processor/Tech
-  Challenge.postman_environment.json) [Download](Tech%20Challenge.postman_environment.json)
-
-Em cada endpoint, existe um exemplo de requisição para teste.
-
-Ordem de execução dos endpoints:
-
-1. GET
-
 ## Kubernetes
 
 A arquitetura local proposta em Kubernetes visa atender aos requisitos de escalabilidade, permitindo o aumento e
