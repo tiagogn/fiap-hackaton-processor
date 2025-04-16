@@ -18,8 +18,12 @@ spring:
 
 aws:
   queue:
-    name: ${AWS_SQS_QUEUE_NAME}
+    video-queue: ${AWS_SQS_QUEUE_NAME}
   s3:
     bucket: ${AWS_S3_BUCKET}
+    video-bucket: ${AWS_S3_BUCKET}
   ses:
     email-from: ${AWS_SES_EMAIL_FROM}
+
+app:
+  download-url: ${APP_DOWNLOAD_URL}
