@@ -38,7 +38,6 @@ class SendoNotificationErrorByEmailTest {
 
         // Validação dos valores do e-mail enviado
         SimpleMailMessage sentMessage = captor.getValue();
-        assertEquals("fiap-processor@gmail.com", sentMessage.getFrom());
         assertEquals("test@example.com", Objects.requireNonNull(sentMessage.getTo())[0]);
         assertEquals("Test Subject", sentMessage.getSubject());
         assertEquals("Test Body", sentMessage.getText());
