@@ -6,6 +6,7 @@
 ![Postgres](https://img.shields.io/badge/Postgres-16-blue)
 ![Maven](https://img.shields.io/badge/Maven-3-blue)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tiagogn_fiap-hackaton-processor&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tiagogn_fiap-hackaton-processor)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tiagogn_fiap-hackaton-processor&metric=coverage)](https://sonarcloud.io/summary/new_code?id=tiagogn_fiap-hackaton-processor)
 
 O objetivo do projeto é o processamento de videos:
 
