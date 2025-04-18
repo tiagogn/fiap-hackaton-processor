@@ -252,6 +252,20 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.0</version> <!-- ou a versão mais recente -->
+				<configuration>
+					<to>
+						<image>tiagogn/fiap-hackaton-processor:1.0</image>
+						<auth>
+							<username>${settings.server.docker-hub.username}</username>
+							<password>${settings.server.docker-hub.password}</password>
+						</auth>
+					</to>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
