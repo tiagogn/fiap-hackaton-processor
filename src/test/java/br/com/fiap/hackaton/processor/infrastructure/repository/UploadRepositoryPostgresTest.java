@@ -1,6 +1,5 @@
 package br.com.fiap.hackaton.processor.infrastructure.repository;
 
-import br.com.fiap.hackaton.processor.ProcessorApplicationTests;
 import br.com.fiap.hackaton.processor.core.domain.StatusVideo;
 import br.com.fiap.hackaton.processor.core.domain.Upload;
 import br.com.fiap.hackaton.processor.core.domain.Video;
@@ -11,7 +10,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
@@ -21,7 +21,8 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@SpringBootTest
+@DataJpaTest
+@Import(UploadRepositoryPostgres.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class UploadRepositoryPostgresTest {
 
