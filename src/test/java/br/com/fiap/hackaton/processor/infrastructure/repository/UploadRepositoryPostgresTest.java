@@ -39,6 +39,7 @@ class UploadRepositoryPostgresTest {
 
     @AfterAll
     static void tearDown() {
+        postgreSQLContainer.close();
         postgreSQLContainer.stop();
     }
 
