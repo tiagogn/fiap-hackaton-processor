@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: localstack
+  namespace: hackaton
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: localstack
+  template:
+    metadata:
+      labels:
+        app: localstack
+    spec:
+      containers:
+        - name: localstack
+          image: localstack/localstack:4.3.0-arm64
+          ports:
+            - containerPort: 4566
+          env:
+            - name: SERVICES
+              value: "s3,sqs,ses"
+            - name: EDGE_PORT
+              value: "4566"
+            - name: AWS_DEFAULT_REGION
+              value: "us-east-1"
+          volumeMounts:
+            - mountPath: /var/lib/localstack
+              name: localstack-volume
+      volumes:
+        - name: localstack-volume
+          emptyDir: {}

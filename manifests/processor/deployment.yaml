@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: processor-deployment
+  namespace: hackaton
+  labels:
+    app: ds-processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ds-processor
+  template:
+    metadata:
+      labels:
+        app: ds-processor
+    spec:
+      containers:
+        - name: processor
+          image: tiagogn/fiap-hackaton-processor:1.0.0
+          ports:
+            - containerPort: 8081
+          resources:
+            limits:
+              memory: "1024Mi"   # Limite de memória que o container pode usar
+              cpu: "1000m"       # Limite de CPU
+            requests:
+              memory: "512Mi"   # Quantidade mínima de memória necessária
+              cpu: "250m"       # Quantidade mínima de CPU necessária
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prd"
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: processor-configmap
+                  key: DB_HOST
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: processor-configmap
+                  key: DB_USER
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: processor-configmap
+                  key: DB_NAME
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: processor-configmap
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: processor-configmap
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_SQS_QUEUE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: processor-configmap
+                  key: AWS_SQS_QUEUE_NAME
+            - name: AWS_S3_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: processor-configmap
+                  key: AWS_S3_BUCKET
+            - name: AWS_SES_EMAIL_FROM
+              valueFrom:
+                configMapKeyRef:
+                  name: processor-configmap
+                  key: AWS_SES_EMAIL_FROM
+            - name: AWS_SQS_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: processor-configmap
+                  key: AWS_SQS_ENDPOINT
+            - name: AWS_S3_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: processor-configmap
+                  key: AWS_S3_ENDPOINT
+            - name: AWS_SES_ENDPOINT
+              valueFrom:
+               configMapKeyRef:
+                 name: processor-configmap
+                 key: AWS_SES_ENDPOINT
+            - name: AWS_S3_FORCE_PATH_STYLE
+              valueFrom:
+                configMapKeyRef:
+                  name: processor-configmap
+                  key: AWS_S3_FORCE_PATH_STYLE
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
+          readinessProbe:
+            httpGet:
+              path: /processor/actuator/health
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /processor/actuator/health
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 20
