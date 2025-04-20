@@ -23,4 +23,6 @@ aws:
     video-queue: video-queue
   s3:
     video-bucket: videos
+  ses:
+    email-from: ${AWS_SES_EMAIL_FROM:tiagogn@gmail.com}
 

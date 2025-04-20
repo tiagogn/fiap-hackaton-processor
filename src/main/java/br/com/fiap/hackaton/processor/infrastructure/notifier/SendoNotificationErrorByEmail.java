@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,6 +22,7 @@ public class SendoNotificationErrorByEmail implements SendNotificationError {
         this.mailSender = mailSender;
     }
 
+    @Async
     @Override
     public void sendNotification(Notification notification) {
         SimpleMailMessage message = new SimpleMailMessage();
