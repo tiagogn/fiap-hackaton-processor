@@ -11,10 +11,13 @@ spring:
       credentials:
         access-key: ${AWS_ACCESS_KEY_ID}
         secret-key: ${AWS_SECRET_ACCESS_KEY}
-      sqs: {}
+      sqs:
+        endpoint: ${AWS_SQS_ENDPOINT}
       s3:
         path-style-access-enabled: false
-      ses: {}
+        endpoint: ${AWS_S3_ENDPOINT}
+      ses:
+        endpoint: ${AWS_SES_ENDPOINT}
 
 aws:
   queue:
