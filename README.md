@@ -90,21 +90,23 @@ Arquitetura To Be Kubernetes na CLOUD
 [IMAGEM AQUI]
 
 ### Para rodar o projeto no Kubernetes, utilize os seguintes comandos, dentro da pasta raíz do projeto:
-[ATUALIZAR AQUI]
+
 ```shell
-kubectl create namespace lanchonete
+kubectl create namespace hackaton
 
 kubectl apply -R -f manifests/
 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
-kubectl get pods -n lanchonete //lista os pods
+kubectl get pods -n hackaton //lista os pods
 
-kubectl top pods -n lanchonete  //exibe métrica de consumo dos pods
+kubectl top pods -n hackaton  //exibe métrica de consumo dos pods
  
 ```
 
 ## SonarQube
+
+Estamos utilizando duas badgets do Sonar para exibição dos quality gates.
 
 ## Link do Miro
 
