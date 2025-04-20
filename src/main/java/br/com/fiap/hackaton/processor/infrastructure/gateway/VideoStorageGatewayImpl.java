@@ -51,6 +51,7 @@ public class VideoStorageGatewayImpl implements VideoStorageGateway {
     }
 
     private Set<String> listVideos(String videoKey) {
+        log.info("Listing videos with prefix {}", videoKey);
         ListObjectsV2Request request = ListObjectsV2Request.builder()
                 .bucket(bucketName)
                 .prefix(videoKey)
@@ -65,6 +66,7 @@ public class VideoStorageGatewayImpl implements VideoStorageGateway {
     }
 
     private byte[] loadVideo(String key) {
+        log.info("Loading video with key {}", key);
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()
                 .bucket(bucketName)
                 .key(key)
@@ -77,6 +79,7 @@ public class VideoStorageGatewayImpl implements VideoStorageGateway {
 
     @Override
     public void writeFile(String fileName, byte[] bytes, Upload upload) {
+        log.info("Writing file {} with size {} bytes to S3", fileName, bytes.length);
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucketName)
                 .key(upload.getId().toString()+"/"+fileName)

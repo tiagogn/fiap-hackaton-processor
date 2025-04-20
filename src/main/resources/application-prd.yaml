@@ -14,7 +14,7 @@ spring:
       sqs:
         endpoint: ${AWS_SQS_ENDPOINT}
       s3:
-        path-style-access-enabled: false
+        path-style-access-enabled: ${AWS_S3_FORCE_PATH_STYLE:false}
         endpoint: ${AWS_S3_ENDPOINT}
       ses:
         endpoint: ${AWS_SES_ENDPOINT}
